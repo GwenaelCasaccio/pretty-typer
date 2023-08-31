@@ -1,5 +1,5 @@
 Class {
 	#name : #PTInt32Type,
-	#superclass : #Object,
+	#superclass : #PTType,
 	#category : #'PrettyType-Type'
 }

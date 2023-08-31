@@ -31,14 +31,15 @@ PrettyType >> leaveScope [
 { #category : #accessing }
 PrettyType >> registerMethodType: aPragmaNode [
 
-	scope methodType: (PTMethodType return: (self class createTypeFrom: aPragmaNode arguments first value))
+	scope methodType: (PTMethodType return: (PTTypeLookup createTypeFrom: aPragmaNode arguments first value))
 	 
 ]
 
 { #category : #accessing }
 PrettyType >> registerVariableType: aPragmaNode [
 
-	scope registerVariableType: (PTVariableType name: aPragmaNode arguments first)
+	scope registerVariable: (PTVariableType name: aPragmaNode arguments first value
+															 type: (PTTypeLookup createTypeFrom: aPragmaNode arguments second value))
 
 ]
 
@@ -48,7 +49,7 @@ PrettyType >> visitAssignmentNode: anAssignmentNode [
 	| variableType valueType |
 	valueType := self visitNode: anAssignmentNode value.
 	variableType := self visitNode: anAssignmentNode variable.
-	variableType typeCheck: valueType.
+	(variableType type typeCheck: valueType type) ifFalse: [ ^ self error: 'Type error' ].
 	^ valueType 
 ]
 
@@ -56,6 +57,8 @@ PrettyType >> visitAssignmentNode: anAssignmentNode [
 PrettyType >> visitLiteralValueNode: aLiteralNode [
 
 	aLiteralNode value class == SmallInteger ifTrue: [ ^ PTLiteralIntegerType value: aLiteralNode value ].
+	aLiteralNode value class == ByteString ifTrue: [ ^ PTLiteralStringType value: aLiteralNode value ].
+	^ self error: 'literal type not managed'
 ]
 
 { #category : #visiting }
@@ -82,7 +85,7 @@ PrettyType >> visitReturnNode: aReturnNode [
 
 	| expressionType |
 	expressionType := super visitReturnNode: aReturnNode.
-	expressionType typeCheck: scope returnType.
+	(expressionType typeCheck: scope returnType) ifFalse: [ ^ self error: 'Type Error' ].
 	^ scope returnType
 ]
 

@@ -20,7 +20,7 @@ PTMethodScope >> lookupVarType: aSymbol [
 
 	methodType arguments do: [ : each | each  name = aSymbol ifTrue: [ ^ each ] ].
 	temporaries do: [ : each | each  name = aSymbol ifTrue: [ ^ each ] ].
-	^ parentScope lookupVarType: aSymbol 
+	^ super lookupVarType: aSymbol
 ]
 
 { #category : #accessing }

@@ -1,5 +1,5 @@
 Class {
 	#name : #PTUInt16Type,
-	#superclass : #Object,
+	#superclass : #PTType,
 	#category : #'PrettyType-Type'
 }

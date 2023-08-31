@@ -1,11 +1,11 @@
 Class {
 	#name : #PTSelfType,
-	#superclass : #Object,
+	#superclass : #PTType,
 	#category : #'PrettyType-Type'
 }
 
 { #category : #'type checking' }
 PTSelfType >> typeCheck: aPTType [
  
-	self shouldBeImplemented.
+	^ self class = aPTType class
 ]

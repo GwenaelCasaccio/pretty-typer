@@ -17,6 +17,9 @@ PTScope >> initialize [
 
 { #category : #lookup }
 PTScope >> lookupVarType: aSymbol [
+
+	variables do: [ : each | each  name = aSymbol ifTrue: [ ^ each ] ].
+	^ self parentScope lookupVarType: aSymbol
 ]
 
 { #category : #accessing }

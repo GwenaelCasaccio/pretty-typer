@@ -1,6 +1,6 @@
 Class {
 	#name : #PTMethodType,
-	#superclass : #Object,
+	#superclass : #PTType,
 	#instVars : [
 		'returnType',
 		'arguments'
@@ -44,4 +44,10 @@ PTMethodType >> return [
 PTMethodType >> return: aType [
 
 	returnType := aType
+]
+
+{ #category : #accessing }
+PTMethodType >> type [ 
+
+	^ returnType 
 ]

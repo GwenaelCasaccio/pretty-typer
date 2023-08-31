@@ -17,5 +17,6 @@ PTTypeLookup class >> createTypeFrom: aSymbol [
 	aSymbol = #Int32 ifTrue: [ ^ PTInt32Type new ].
 	aSymbol = #Int64 ifTrue: [ ^ PTInt64Type new ].
 	
+	aSymbol = #Self ifTrue: [ ^ PTSelfType new ].
 	^ self error: 'Type not found'
 ]
