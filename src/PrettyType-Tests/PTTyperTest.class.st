@@ -35,3 +35,11 @@ PTTyperTest >> testMethodDeclaration4 [
 	ast := RBParser parseMethod: 'method <return: #UInt8> | a | <var: #a type: #UInt8> ^ a := ''abc'''.
 	self should: [ PrettyType type: ast ] raise: PTTypeException.
 ]
+
+{ #category : #tests }
+PTTyperTest >> testMethodDeclaration5 [
+
+	| ast |
+	ast := RBParser parseMethod: 'method <return: #UInt8> | a | <var: #a type: #UInt8> ^ a := 123'.
+	PrettyType type: ast.
+]
