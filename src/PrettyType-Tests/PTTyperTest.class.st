@@ -5,6 +5,14 @@ Class {
 }
 
 { #category : #tests }
+PTTyperTest >> testMethodAndLambdaDeclaration1 [
+
+	| ast |
+	ast := RBParser parseMethod: 'method <return: #UInt8> | a | <var: #a type: #UInt8> ^ a := [ <return: #UInt8> 123 ]'.
+	PrettyType type: ast.
+]
+
+{ #category : #tests }
 PTTyperTest >> testMethodDeclaration1 [
 
 	| ast typer |
