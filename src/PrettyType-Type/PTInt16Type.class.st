@@ -1,5 +1,0 @@
-Class {
-	#name : #PTInt16Type,
-	#superclass : #PTType,
-	#category : #'PrettyType-Type'
-}
