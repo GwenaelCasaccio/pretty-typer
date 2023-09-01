@@ -49,7 +49,7 @@ PrettyType >> visitAssignmentNode: anAssignmentNode [
 	| variableType valueType |
 	valueType := self visitNode: anAssignmentNode value.
 	variableType := self visitNode: anAssignmentNode variable.
-	(variableType type typeCheck: valueType type) ifFalse: [ ^ self error: 'Type error' ].
+	(variableType type typeCheck: valueType type) ifFalse: [ ^ PTTypeException signal: 'Type error' ].
 	^ valueType 
 ]
 
@@ -85,7 +85,7 @@ PrettyType >> visitReturnNode: aReturnNode [
 
 	| expressionType |
 	expressionType := super visitReturnNode: aReturnNode.
-	(expressionType typeCheck: scope returnType) ifFalse: [ ^ self error: 'Type Error' ].
+	(expressionType typeCheck: scope returnType) ifFalse: [ ^ PTTypeException signal: 'Type Error' ].
 	^ scope returnType
 ]
 
