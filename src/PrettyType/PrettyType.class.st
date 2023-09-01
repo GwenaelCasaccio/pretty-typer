@@ -49,7 +49,7 @@ PrettyType >> visitAssignmentNode: anAssignmentNode [
 	| variableType valueType |
 	valueType := self visitNode: anAssignmentNode value.
 	variableType := self visitNode: anAssignmentNode variable.
-	(variableType type typeCheck: valueType type) ifFalse: [ ^ PTTypeException signal: 'Type error' ].
+	(variableType typeCheck: valueType) ifFalse: [ ^ PTTypeException signal: 'Type error' ].
 	^ valueType 
 ]
 
@@ -104,5 +104,5 @@ PrettyType >> visitSuperNode: aSuperNode [
 { #category : #visiting }
 PrettyType >> visitVariableNode: aVariableNode [
 
-	^ scope lookupVarType: aVariableNode name.
+	^ (scope lookupVarType: aVariableNode name) type
 ]
