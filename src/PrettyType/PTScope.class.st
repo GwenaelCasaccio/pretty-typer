@@ -19,7 +19,8 @@ PTScope >> initialize [
 PTScope >> lookupVarType: aSymbol [
 
 	variables do: [ : each | each  name = aSymbol ifTrue: [ ^ each ] ].
-	^ self parentScope lookupVarType: aSymbol
+	^ self parentScope ifNil: [ self error: 'Variable not found !' ]
+	                   ifNotNil: [ : aParentScope | aParentScope lookupVarType: aSymbol ]
 ]
 
 { #category : #accessing }

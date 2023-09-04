@@ -5,6 +5,14 @@ Class {
 }
 
 { #category : #tests }
+PTTyperTest >> testMessageSend1 [
+
+	| ast |
+	ast := RBParser parseMethod: 'method <return: #UInt64> ^ PTTestSample factorial: 5'.
+	PrettyType type: ast.
+]
+
+{ #category : #tests }
 PTTyperTest >> testMethodAndLambdaDeclaration1 [
 
 	| ast |

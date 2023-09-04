@@ -70,10 +70,15 @@ PrettyType >> visitLiteralValueNode: aLiteralNode [
 { #category : #visiting }
 PrettyType >> visitMethodNode: aMethodNode [
 
+	| env |
+	env := PTEnvironmentScope new.
+	env register: #PTTestSample put: PTClassType new.
+	self enterScope: env.
 	self enterScope: PTClassScope new.
 	self enterScope: PTMethodScope new.
 	aMethodNode pragmas do: [ :each | self visitNode: each ].
 	self visitNode: aMethodNode body.
+	self leaveScope.
 	self leaveScope.
 	self leaveScope.
 ]

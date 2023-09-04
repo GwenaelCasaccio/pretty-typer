@@ -9,6 +9,13 @@ Class {
 }
 
 { #category : #tests }
+PTTestSample class >> factoria: anInteger [
+	<return: #UInt64>
+	
+	^ anInteger
+]
+
+{ #category : #tests }
 PTTestSample >> method1 [
 
 	| temp1 temp2 |

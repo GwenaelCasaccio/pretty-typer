@@ -8,5 +8,5 @@ Class {
 PTClassScope >> lookupVarType: aSymbol [
 
 	aSymbol = #self ifTrue: [ ^ PTSelfType new ].
-	^ self error: 'Variable not found !'
+	^ super lookupVarType: aSymbol
 ]
