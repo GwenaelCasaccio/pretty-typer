@@ -54,6 +54,12 @@ PrettyType >> visitAssignmentNode: anAssignmentNode [
 ]
 
 { #category : #visiting }
+PrettyType >> visitBlockNode: aBlockNode [
+
+	self error: 'Cannot type block'
+]
+
+{ #category : #visiting }
 PrettyType >> visitLiteralValueNode: aLiteralNode [
 
 	aLiteralNode value class == SmallInteger ifTrue: [ ^ PTLiteralIntegerType value: aLiteralNode value ].
@@ -70,6 +76,16 @@ PrettyType >> visitMethodNode: aMethodNode [
 	self visitNode: aMethodNode body.
 	self leaveScope.
 	self leaveScope.
+]
+
+{ #category : #visiting }
+PrettyType >> visitNamedBlockNode: aBlockNode [
+
+	self enterScope: PTBlockScope new.
+	aBlockNode pragmas do: [ :each | self visitNode: each ].
+	self visitArgumentNodes: aBlockNode arguments.
+	self visitNode: aBlockNode body.
+	self leaveScope
 ]
 
 { #category : #visiting }

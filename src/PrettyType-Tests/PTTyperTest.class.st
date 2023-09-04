@@ -8,7 +8,7 @@ Class {
 PTTyperTest >> testMethodAndLambdaDeclaration1 [
 
 	| ast |
-	ast := RBParser parseMethod: 'method <return: #UInt8> | a | <var: #a type: #UInt8> ^ a := [ <return: #UInt8> 123 ]'.
+	ast := PPSmalltalkParser parseMethod: 'method <return: #UInt8> | a | <var: #a type: #UInt8> ^ a := £ foo <return: #UInt8> 123 £'.
 	PrettyType type: ast.
 ]
 
