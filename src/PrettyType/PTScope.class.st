@@ -25,7 +25,7 @@ PTScope >> lookupVarType: aSymbol [
 { #category : #accessing }
 PTScope >> parentScope [
 
-	parentScope
+	^ parentScope
 ]
 
 { #category : #accessing }
