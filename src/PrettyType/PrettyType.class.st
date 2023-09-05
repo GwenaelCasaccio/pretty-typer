@@ -68,11 +68,24 @@ PrettyType >> visitLiteralValueNode: aLiteralNode [
 ]
 
 { #category : #visiting }
+PrettyType >> visitMessageNode: aMessageNode [
+
+	| receiverType messageDeclaration |
+	receiverType := self visitNode: aMessageNode receiver.
+	messageDeclaration := receiverType messsageLookup: aMessageNode selectorNode value.
+	^ messageDeclaration typeCheck: (aMessageNode arguments collect: [ :each | self visitNode: each ])
+]
+
+{ #category : #visiting }
 PrettyType >> visitMethodNode: aMethodNode [
 
-	| env |
+	| env testClass |
+	testClass := PTClassType new.
+	testClass methodDictionary at: #factorial: 
+									   put: (PTMethodType return: PTUInt64Type new 
+																 arguments: { PTUInt64Type new }).
 	env := PTEnvironmentScope new.
-	env register: #PTTestSample put: PTClassType new.
+	env register: #PTTestSample put: testClass.
 	self enterScope: env.
 	self enterScope: PTClassScope new.
 	self enterScope: PTMethodScope new.

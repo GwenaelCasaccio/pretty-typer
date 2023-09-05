@@ -27,6 +27,12 @@ PTClassType >> initialize [
 	methodDictionary := Dictionary new.
 ]
 
+{ #category : #lookup }
+PTClassType >> messsageLookup: aSelector [
+
+	^ methodDictionary at: aSelector ifAbsent: [ self error: 'Not Found' ]
+]
+
 { #category : #accessing }
 PTClassType >> methodDictionary [
 
