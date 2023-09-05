@@ -34,6 +34,13 @@ PTMethodType >> arguments: anArray [
 	arguments := anArray
 ]
 
+{ #category : #initialization }
+PTMethodType >> initialize [ 
+
+	super initialize.
+	arguments := #()
+]
+
 { #category : #accessing }
 PTMethodType >> return [
 
@@ -49,5 +56,15 @@ PTMethodType >> return: aType [
 { #category : #accessing }
 PTMethodType >> type [ 
 
+	^ returnType 
+]
+
+{ #category : #'type checking' }
+PTMethodType >> typeCheck: anArray [
+
+	| stream |
+	arguments size = anArray size ifFalse: [ ^ PTTypeException signal: 'Type Error wrong number of args' ].
+	stream := ReadStream on: anArray.
+	(arguments allSatisfy: [ : aType | aType typeCheck: stream next ]) ifFalse: [ ^ PTTypeException signal: 'Type Error wrong number of args' ].
 	^ returnType 
 ]

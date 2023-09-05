@@ -15,3 +15,9 @@ PTUInt64Type >> minValue [
 
 	^ 0
 ]
+
+{ #category : #'type checking' }
+PTUInt64Type >> typeCheck: aPTType [
+
+	^ self class = aPTType class or: [ aPTType class = PTLiteralIntegerType and: [ aPTType value between: 16r0 and: 16rFFFFFFFFFFFFFFFF ] ]
+]
