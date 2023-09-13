@@ -100,6 +100,7 @@ PrettyType >> visitMethodNode: aMethodNode [
 PrettyType >> visitNamedBlockNode: aBlockNode [
 
 	self enterScope: PTBlockScope new.
+	" vérifier si pragmas de type "
 	aBlockNode pragmas do: [ :each | self visitNode: each ].
 	self visitArgumentNodes: aBlockNode arguments.
 	self visitNode: aBlockNode body.

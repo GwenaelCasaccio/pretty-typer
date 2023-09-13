@@ -16,7 +16,7 @@ PTTyperTest >> testMessageSend1 [
 PTTyperTest >> testMethodAndLambdaDeclaration1 [
 
 	| ast |
-	ast := PPSmalltalkParser parseMethod: 'method <return: #UInt8> | a | <var: #a type: #UInt8> ^ a := £ foo <return: #UInt8> 123 £'.
+	ast := PPSmalltalkParser parseMethod: 'method <return: #UInt8> | a | <var: #a  type: #UInt8> £ foo <return: #UInt8> 123 £. ^ a'.
 	PrettyType type: ast.
 ]
 
