@@ -15,6 +15,12 @@ PTBlockScope >> initialize [
 	temporaries := OrderedCollection new.
 ]
 
+{ #category : #testing }
+PTBlockScope >> isBlockScope [ 
+
+	^ true
+]
+
 { #category : #lookup }
 PTBlockScope >> lookupVarType: aSymbol [
 
@@ -40,4 +46,10 @@ PTBlockScope >> methodType: anObject [
 PTBlockScope >> returnType [ 
 
 	^ methodType return
+]
+
+{ #category : #accessing }
+PTBlockScope >> typeClass [
+
+	^ PTClosureType
 ]

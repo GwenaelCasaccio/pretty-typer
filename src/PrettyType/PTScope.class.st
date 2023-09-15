@@ -15,6 +15,18 @@ PTScope >> initialize [
 	variables := Set new.
 ]
 
+{ #category : #testing }
+PTScope >> isBlockScope [ 
+
+	^ false
+]
+
+{ #category : #testing }
+PTScope >> isMethodScope [ 
+
+	^ false
+]
+
 { #category : #lookup }
 PTScope >> lookupVarType: aSymbol [
 
@@ -39,4 +51,10 @@ PTScope >> parentScope: aScope [
 PTScope >> registerVariable: aVariableNode [
 
 	variables add: aVariableNode
+]
+
+{ #category : #accessing }
+PTScope >> typeClass [
+
+	^ self error: 'TypeClass not defined'
 ]

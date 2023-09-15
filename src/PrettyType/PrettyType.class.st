@@ -30,8 +30,8 @@ PrettyType >> leaveScope [
 
 { #category : #accessing }
 PrettyType >> registerMethodType: aPragmaNode [
-
-	scope methodType: (PTMethodType return: (PTTypeLookup createTypeFrom: aPragmaNode arguments first value))
+	
+	scope methodType: (scope typeClass return: (PTTypeLookup createTypeFrom: aPragmaNode arguments first value))
 	 
 ]
 

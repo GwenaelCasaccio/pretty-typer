@@ -15,6 +15,12 @@ PTMethodScope >> initialize [
 	temporaries := OrderedCollection new.
 ]
 
+{ #category : #testing }
+PTMethodScope >> isMethodScope [ 
+
+	^ true
+]
+
 { #category : #lookup }
 PTMethodScope >> lookupVarType: aSymbol [
 
@@ -40,4 +46,10 @@ PTMethodScope >> methodType: anObject [
 PTMethodScope >> returnType [ 
 
 	^ methodType return
+]
+
+{ #category : #accessing }
+PTMethodScope >> typeClass [
+
+	^ PTMethodType
 ]
