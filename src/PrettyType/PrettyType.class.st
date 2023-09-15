@@ -99,12 +99,15 @@ PrettyType >> visitMethodNode: aMethodNode [
 { #category : #visiting }
 PrettyType >> visitNamedBlockNode: aBlockNode [
 
+	| closureType |
+	closureType := PTClosureType new.
 	self enterScope: PTBlockScope new.
 	" vérifier si pragmas de type "
 	aBlockNode pragmas do: [ :each | self visitNode: each ].
 	self visitArgumentNodes: aBlockNode arguments.
 	self visitNode: aBlockNode body.
-	self leaveScope
+	self leaveScope.
+	^ closureType
 ]
 
 { #category : #visiting }
@@ -128,6 +131,17 @@ PrettyType >> visitReturnNode: aReturnNode [
 PrettyType >> visitSelfNode: aSelfNode [
 
 	^ PTSelfType new
+]
+
+{ #category : #visiting }
+PrettyType >> visitSequenceNode: aSequenceNode [
+	
+	| statements expressionType |
+	self visitTemporaryNodes: aSequenceNode temporaries.
+	(statements := aSequenceNode statements) allButLastDo: [ :each | self visitNode: each ].
+	expressionType := self visitNode: statements last.
+	(expressionType typeCheck: scope returnType) ifFalse: [ ^ PTTypeException signal: 'Type Error' ].
+	^ scope returnType
 ]
 
 { #category : #visiting }
