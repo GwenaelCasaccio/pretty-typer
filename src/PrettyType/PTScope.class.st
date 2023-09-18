@@ -5,7 +5,7 @@ Class {
 		'parentScope',
 		'variables'
 	],
-	#category : #PrettyType
+	#category : #'PrettyType-Scope'
 }
 
 { #category : #initialization }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PTClassScope,
 	#superclass : #PTScope,
-	#category : #PrettyType
+	#category : #'PrettyType-Scope'
 }
 
 { #category : #lookup }

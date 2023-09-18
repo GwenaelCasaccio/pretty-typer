@@ -5,7 +5,7 @@ Class {
 		'methodType',
 		'temporaries'
 	],
-	#category : #PrettyType
+	#category : #'PrettyType-Scope'
 }
 
 { #category : #initializing }

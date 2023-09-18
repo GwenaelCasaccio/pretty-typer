@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'environment'
 	],
-	#category : #PrettyType
+	#category : #'PrettyType-Scope'
 }
 
 { #category : #initialization }

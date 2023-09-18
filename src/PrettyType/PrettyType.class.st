@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'scope'
 	],
-	#category : #PrettyType
+	#category : #'PrettyType-AST'
 }
 
 { #category : #visiting }
