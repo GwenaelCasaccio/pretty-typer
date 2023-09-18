@@ -16,6 +16,18 @@ PTNumberType class >> minValue [
 	^ self shouldBeImplemented 
 ]
 
+{ #category : #comparing }
+PTNumberType >> = aType [
+
+	^ self class = aType class
+]
+
+{ #category : #comparing }
+PTNumberType >> hash [
+
+	^ self class hash
+]
+
 { #category : #'accessing - limits' }
 PTNumberType >> maxValue [
 

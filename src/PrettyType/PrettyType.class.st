@@ -2,7 +2,6 @@ Class {
 	#name : #PrettyType,
 	#superclass : #RBProgramNodeVisitor,
 	#instVars : [
-		'methodType',
 		'scope'
 	],
 	#category : #PrettyType
@@ -25,7 +24,10 @@ PrettyType >> enterScope: aScope [
 { #category : #scopes }
 PrettyType >> leaveScope [
 
-	scope := scope parentScope
+	| parentScope |
+	parentScope := scope.
+	scope := scope parentScope.
+	^ parentScope.
 ]
 
 { #category : #accessing }
@@ -99,15 +101,12 @@ PrettyType >> visitMethodNode: aMethodNode [
 { #category : #visiting }
 PrettyType >> visitNamedBlockNode: aBlockNode [
 
-	| closureType |
-	closureType := PTClosureType new.
 	self enterScope: PTBlockScope new.
 	" vérifier si pragmas de type "
 	aBlockNode pragmas do: [ :each | self visitNode: each ].
 	self visitArgumentNodes: aBlockNode arguments.
 	self visitNode: aBlockNode body.
-	self leaveScope.
-	^ closureType
+	^ self leaveScope methodType
 ]
 
 { #category : #visiting }
