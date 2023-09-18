@@ -65,6 +65,5 @@ PTMethodType >> typeCheck: anArray [
 	| stream |
 	arguments size = anArray size ifFalse: [ ^ PTTypeException signal: 'Type Error wrong number of args' ].
 	stream := ReadStream on: anArray.
-	(arguments allSatisfy: [ : aType | aType typeCheck: stream next ]) ifFalse: [ ^ PTTypeException signal: 'Type Error wrong number of args' ].
-	^ returnType 
+	^ arguments allSatisfy: [ : aType | aType typeCheck: stream next ]
 ]

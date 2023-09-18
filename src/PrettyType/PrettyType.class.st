@@ -75,7 +75,8 @@ PrettyType >> visitMessageNode: aMessageNode [
 	| receiverType messageDeclaration |
 	receiverType := self visitNode: aMessageNode receiver.
 	messageDeclaration := receiverType messsageLookup: aMessageNode selectorNode value.
-	^ messageDeclaration typeCheck: (aMessageNode arguments collect: [ :each | self visitNode: each ])
+	(messageDeclaration typeCheck: (aMessageNode arguments collect: [ :each | self visitNode: each ])) ifFalse: [ self error: 'Wrong type' ].
+	^ messageDeclaration return
 ]
 
 { #category : #visiting }

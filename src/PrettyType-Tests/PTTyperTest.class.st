@@ -29,6 +29,14 @@ PTTyperTest >> testMethodAndLambdaDeclaration2 [
 ]
 
 { #category : #tests }
+PTTyperTest >> testMethodAndLambdaDeclaration3 [
+
+	| ast |
+	ast := PPSmalltalkParser parseMethod: 'method <return: #UInt8> | a b | <var: #a  type: #UInt8> °var: #b type: (PTClosureType return: (PTUInt8Type new))° b := £ foo <return: #UInt8> 123 £. ^ b value'.
+	PrettyType type: ast.
+]
+
+{ #category : #tests }
 PTTyperTest >> testMethodDeclaration1 [
 
 	| ast typer |

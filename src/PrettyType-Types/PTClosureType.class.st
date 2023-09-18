@@ -49,8 +49,7 @@ PTClosureType >> initialize [
 { #category : #lookup }
 PTClosureType >> messsageLookup: aSelector [
 
-	self error: 'foo'.
-	aSelector = #value ifTrue: [ ^ self ].
+	aSelector = #value ifTrue: [ ^ PTMethodType return: returnType ].
 	self error: 'Message not found'
 ]
 
